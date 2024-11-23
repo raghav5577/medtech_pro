@@ -58,7 +58,7 @@ disease_symptoms = {
     "Alzheimer's": "Memory Loss, Confusion, Difficulty Thinking, Changes In Personality, changes in Behavior",
     "Arthritis": "Pain, Stiffness, Swelling, Inflammation In The Joints",
     "Adenovirus": "Fever, Sore Throat, Cough, Conjunctivitis, Rash, Pink Eye",
-    "Aflatoxicosis": "Vomiting, Diarrhea, Jaundice, Liver Damage, Death",
+    "Aflatoxicosis": "Vomiting, Diarrhea, Jaundice, Liver Damage",
     "Allergic Rhinitis": "Runny Nose, Sneezing, Itchy Eyes, Itchy Nose, Throat, Palate",
     "Anxiety Disorder": "Excessive Worry, Fear, Anxiety That Interferes With Daily Life",
     "Appendicitis": "Pain In The Lower Right Abdomen, Nausea, Vomiting, Fever",
