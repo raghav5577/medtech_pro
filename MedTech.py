@@ -369,6 +369,7 @@ def detect_diseases(user_symptoms):
     max_matches = max(disease_matches.values(), default=0)
     likely_diseases = [disease for disease, matches in disease_matches.items() if matches == max_matches and matches > 0]
     return likely_diseases, disease_matches
+    
 def show_about_us():
     st.markdown("""
         <div class="section" id="about">
@@ -393,17 +394,15 @@ def show_contact():
 
 def main():
     add_custom_header()
-    
+
     st.title("MedTech - Disease Prediction System")
     st.write("Enter your symptoms to get a possible diagnosis")
 
-    # Create a list of all unique symptoms
     all_symptoms = set()
     for symptoms in disease_symptoms.values():
         all_symptoms.update([symptom.strip().lower() for symptom in symptoms.split(",")])
     all_symptoms = sorted(list(all_symptoms))
 
-    # Multi-select for symptoms
     user_symptoms = st.multiselect(
         "Select your symptoms:",
         all_symptoms
@@ -420,11 +419,9 @@ def main():
                 for disease in predicted_diseases:
                     st.write(f"- {disease}")
 
-                    # Display risk level
                     risk = risklevels_disease.get(disease, "Unknown")
                     st.write(f"Risk Level: {risk}")
 
-                    # Display recommended specialists
                     st.write("Recommended Specialists:")
                     specialist_found = False
                     for specialist, diseases in disease_specialist.items():
@@ -436,20 +433,19 @@ def main():
                         st.write("- Please consult a general physician")
                     
                     st.write("---")
-
             else:
                 st.warning("No disease matches your symptoms. Please consult a general physician.")
+            st.write("Thank you for using MedTech...")
+
     show_about_us()
     show_contact()
 
-    # Add disclaimer
     st.markdown("""
     ---
     **Disclaimer:** This is not a substitute for professional medical advice. 
     Always consult with a qualified healthcare provider for proper diagnosis and treatment.
     """)
-    
-    #Risk assessment criteria 
+
     st.markdown("""
     ---
     Criteria for Risk Assessment:\n
@@ -457,6 +453,7 @@ def main():
     Moderate: Diseases with significant health impacts but lower fatality rates or slower progression.\n
     Low: Diseases that are usually manageable or cause mild symptoms.\n
     """)
+
 
 if __name__ == "__main__":
     main()
