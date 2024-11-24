@@ -1,7 +1,5 @@
 import streamlit as st
-import pandas as pd
 
-# Copy your existing dictionaries (disease_symptoms, disease_specialist, risklevels_disease) here
 disease_symptoms = {
     "Malaria": "Fever, Headache, Sweating, Diarrhea, Vomiting, Fatigue",
     "Measles": "Fever, Cough, Red Eyes, Sore Throat, Rash, Runny Nose",
@@ -76,36 +74,86 @@ disease_symptoms = {
     "Kidney Stones": "Pain In The Lower Back Or Side, Nausea, Vomiting, Blood In The Urine",
     "Lung Cancer": "Cough That Does Not Go Away, Shortness Of Breath, Chest Pain, Unexplained Weight Loss, Fatigue, Blood In The Sputum",
     "Covid-19": "Fever,Cough,Shortness of breath, difficulty breathing, Fatigue ,Muscle or body aches,Headache, loss of taste,loss of smell,Sore throat, runny nose,Nausea,Diarrhea"
+    "Anthrax": "Fever, Chills, Shortness Of Breath, Skin Ulcers, Chest Pain",
+    "Chikungunya": "Fever, Joint Pain, Rash, Headache, Fatigue",
+    "Dengue": "Fever, Severe Headache, Pain Behind The Eyes, Joint Pain, Muscle Pain, Rash",
+    "Ebola": "Fever, Severe Headache, Muscle Pain, Weakness, Fatigue, Diarrhea, Vomiting, Abdominal Pain, Unexplained Bleeding",
+    "Hantavirus": "Fever, Muscle Aches, Fatigue, Shortness Of Breath, Cough",
+    "HIV/AIDS": "Fatigue, Weight Loss, Fever, Swollen Lymph Nodes, Opportunistic Infections",
+    "Leprosy": "Skin Lesions, Numbness, Muscle Weakness, Eye Problems",
+    "Leptospirosis": "Fever, Muscle Pain, Red Eyes, Abdominal Pain, Jaundice",
+    "Lyme Disease": "Rash, Fever, Headache, Fatigue, Joint Pain, Muscle Pain",
+    "Marburg Virus": "Fever, Headache, Muscle Pain, Nausea, Vomiting, Diarrhea, Bleeding",
+    "Norovirus": "Vomiting, Diarrhea, Stomach Pain, Nausea, Fever",
+    "Polio": "Fever, Sore Throat, Headache, Vomiting, Muscle Weakness, Paralysis",
+    "Scrub Typhus": "Fever, Rash, Eschar (Black Scab At The Site Of A Bite), Headache, Muscle Pain",
+    "Sepsis": "Fever, Chills, Rapid Heart Rate, Rapid Breathing, Confusion, Low Blood Pressure",
+    "Syphilis": "Sores, Rash, Fever, Swollen Lymph Nodes, Fatigue, Muscle Aches",
+    "Tetanus": "Jaw Stiffness, Muscle Spasms, Difficulty Swallowing, Seizures",
+    "Toxoplasmosis": "Fever, Muscle Pain, Sore Throat, Swollen Lymph Nodes",
+    "Typhoid Fever": "High Fever, Weakness, Stomach Pain, Constipation, Rash",
+    "Zika Virus": "Fever, Rash, Joint Pain, Conjunctivitis, Headache",
+    "Yellow Fever": "Fever, Chills, Headache, Nausea, Vomiting, Jaundice",
+    "Brucellosis": "Fever, Sweating, Fatigue, Muscle Pain, Joint Pain, Loss Of Appetite",
+    "Hepatitis A": "Fatigue, Nausea, Stomach Pain, Jaundice, Loss Of Appetite",
+    "Hepatitis B": "Fatigue, Jaundice, Dark Urine, Abdominal Pain, Nausea",
+    "Hepatitis C": "Fatigue, Jaundice, Dark Urine, Joint Pain, Nausea",
+    "Cholera": "Diarrhea, Dehydration, Vomiting, Rapid Heart Rate, Low Blood Pressure",
+    "Plague": "Fever, Chills, Headache, Weakness, Swollen Lymph Nodes, Abdominal Pain",
+    "Tularemia": "Fever, Skin Ulcers, Swollen Lymph Nodes, Fatigue, Shortness Of Breath",
+    "Rotavirus": "Diarrhea, Vomiting, Fever, Abdominal Pain, Dehydration",
+    "Hendra Virus": "Fever, Cough, Shortness Of Breath, Headache, Fatigue",
+    "Nipah Virus": "Fever, Headache, Drowsiness, Confusion, Seizures",
+    "Schistosomiasis": "Rash, Fever, Chills, Muscle Pain, Cough",
+    "Ehrlichiosis": "Fever, Headache, Fatigue, Muscle Pain, Nausea",
+    "Babesiosis": "Fever, Chills, Sweats, Fatigue, Muscle Pain, Headache",
+    "Lassa Fever": "Fever, Sore Throat, Chest Pain, Vomiting, Diarrhea",
+    "Filariasis": "Swelling In Limbs, Fever, Skin Lesions, Enlarged Lymph Nodes",
+    "Onchocerciasis (River Blindness)": "Skin Rash, Itching, Vision Problems, Nodules Under The Skin",
+    "Toxocariasis": "Fever, Cough, Rash, Abdominal Pain, Swollen Lymph Nodes",
+    "Trachoma": "Eye Discharge, Irritation, Swollen Eyelids, Vision Problems",
+    "Whipple's Disease": "Joint Pain, Chronic Diarrhea, Abdominal Pain, Weight Loss",
 }
     
 
 
 disease_specialist = {
-    "Infectious Disease Specialist": [ "Malaria", "Measles", "Meningitis", "Mononucleosis", "Rabies", "Shingles", "Tuberculosis (TB)", "Bacterial Meningitis", "Adenovirus", "Gonorrhea", "Herpes"],
+    "Infectious Disease Specialist": [ "Anthrax", "Chikungunya", "Dengue", "Ebola", "Hantavirus", "HIV/AIDS", "Leprosy",
+    "Leptospirosis", "Lyme Disease", "Marburg Virus", "Norovirus", "Polio", "Scrub Typhus",
+    "Sepsis", "Syphilis", "Tetanus", "Toxoplasmosis", "Typhoid Fever", "Zika Virus",
+    "Yellow Fever", "Brucellosis", "Hepatitis A", "Hepatitis B", "Hepatitis C", "Cholera",
+    "Plague", "Tularemia", "Rotavirus", "Hendra Virus", "Nipah Virus", "Schistosomiasis",
+    "Ehrlichiosis", "Babesiosis", "Lassa Fever", "Filariasis", "Onchocerciasis (River Blindness)",
+    "Toxocariasis", "Malaria", "Measles", "Meningitis", "Mononucleosis", "Rabies", "Shingles", "Tuberculosis (TB)", "Bacterial Meningitis", "Adenovirus", "Gonorrhea", "Herpes"],
     "Pediatrician or Infectious Disease Specialist": ["Measles"],
     "Primary Care Physician": ["Mononucleosis", "Flu", "Influenza"],
-    "Pulmonologist": ["Pneumonia", "Tuberculosis (TB)", "Lung Disease","Covid-19", "Bronchitis", "Asthma", "Lung Cancer"],
+    "Pulmonologist": ["Pneumonia", "Tuberculosis (TB)", "Lung Disease","Covid-19", "Bronchitis", "Asthma", "Lung Cancer","Hantavirus", "Plague", "Hendra Virus"],
     "Urologist": ["Urinary Tract Infection", "Erectile Dysfunction", "Prostate Cancer", "Bladder Cancer", "Kidney Stones", "Gonorrhea"],
     "Vascular Surgeon": ["Varicose Veins", "Aortic Aneurysm", "Peripheral Artery Disease"],
-    "Dermatologist": ["Warts", "Shingles", "Atopic Dermatitis", "Herpes"],
+    "Dermatologist": ["Warts", "Shingles", "Atopic Dermatitis", "Herpes","Leprosy", "Syphilis"],
     "Gynecologist or Urologist": ["Yeast Infection"],
-    "Ophthalmologist": ["Acanthamoeba Keratitis", "Glaucoma"],
+    "Ophthalmologist": ["Acanthamoeba Keratitis", "Glaucoma","Onchocerciasis (River Blindness)", "Toxocariasis", "Trachoma"],
     "Surgeon": ["Acute Appendicitis", "Appendicitis", "Gallstones"],
-    "Nephrologist": ["Acute Kidney Injury (AKI)", "Kidney Disease", "Chronic Kidney Disease"],
-    "Neurologist": ["Alzheimer's Disease", "Meningitis", "Bipolar Disorder", "Dementia", "Stroke","Epilepsy", "Parkinson's Disease", "Alzheimer's"],
-    "Hematologist": ["Anemia", "Blood Clot"],
+    "Nephrologist": ["Leptospirosis","Acute Kidney Injury (AKI)", "Kidney Disease", "Chronic Kidney Disease"],
+    "Neurologist": ["Polio", "Tetanus", "Nipah Virus","Alzheimer's Disease", "Meningitis", "Bipolar Disorder", "Dementia", "Stroke","Epilepsy", "Parkinson's Disease", "Alzheimer's"],
+    "Hematologist": ["Anemia", "Blood Clot","Dengue", "Babesiosis"],
     "Cardiovascular Surgeon": ["Aortic Aneurysm"],
     "Psychiatrist": ["Bipolar Disorder", "Anxiety Disorder"],
     "Oncologist": ["Colorectal Cancer", "Prostate Cancer", "Thyroid Cancer", "Stomach Cancer", "Cancer", "Lung Cancer"],
-    "Gastroenterologist": ["Colorectal Cancer", "Salmonella", "Peptic Ulcer Disease", "Celiac Disease", "Crohn's Disease","Ulcerative Colitis", "Gallstones", "Irritable Bowel Syndrome (IBS)"],
+    "Gastroenterologist": ["Norovirus", "Typhoid Fever", "Hepatitis A", "Hepatitis B", "Hepatitis C",
+    "Cholera", "Rotavirus", "Whipple's Disease","Colorectal Cancer", "Salmonella", "Peptic Ulcer Disease", "Celiac Disease", "Crohn's Disease","Ulcerative Colitis", "Gallstones", "Irritable Bowel Syndrome (IBS)"],
     "Gynecologic Oncologist": ["Cervical Cancer"],
     "Endocrinologist": ["Thyroid Cancer", "Diabetes", "Hashimoto's Thyroiditis", "Graves' Disease"],
-    "Rheumatologist": ["Fibromyalgia", "Rheumatoid Arthritis", "Lupus", "Arthritis"],
+    "Rheumatologist": ["Fibromyalgia", "Rheumatoid Arthritis", "Lupus", "Arthritis","Chikungunya", "Lyme Disease"],
     "Primary Care Physician or Infectious Disease Specialist": ["Adenovirus"],
     "Allergist": ["Allergic Rhinitis", "Asthma"],
     "Psychiatrist or Psychologist": ["Anxiety Disorder"],
     "Developmental Specialist": ["Asperger Syndrome"],
-    "Hepatologist": ["Aflatoxicosis", "Hepatitis"]
+    "Hepatologist": ["Aflatoxicosis", "Hepatitis"],
+    "Critical Care Specialist": ["Sepsis"],
+    "Hepatologist": ["Hepatitis A", "Hepatitis B", "Hepatitis C"],
+    "Pediatrician":["Rotavirus"]
+    
 }
 
 risklevels_disease = {
@@ -182,6 +230,46 @@ risklevels_disease = {
     "Kidney Stones": "Moderate",
     "Lung Cancer": "High",
     "Covid-19": "High"
+    "Anthrax": "High",
+    "Chikungunya": "Moderate",
+    "Dengue": "High",
+    "Ebola": "High",
+    "Hantavirus": "High",
+    "HIV/AIDS": "High",
+    "Leprosy": "Moderate",
+    "Leptospirosis": "Moderate",
+    "Lyme Disease": "Moderate",
+    "Marburg Virus": "High",
+    "Norovirus": "Low",
+    "Polio": "High",
+    "Scrub Typhus": "Moderate",
+    "Sepsis": "High",
+    "Syphilis": "Moderate",
+    "Tetanus": "High",
+    "Toxoplasmosis": "Low",
+    "Typhoid Fever": "High",
+    "Zika Virus": "Moderate",
+    "Yellow Fever": "High",
+    "Brucellosis": "Moderate",
+    "Hepatitis A": "Moderate",
+    "Hepatitis B": "High",
+    "Hepatitis C": "High",
+    "Cholera": "High",
+    "Plague": "High",
+    "Tularemia": "High",
+    "Rotavirus": "Low",
+    "Hendra Virus": "High",
+    "Nipah Virus": "High",
+    "Schistosomiasis": "Moderate",
+    "Ehrlichiosis": "Moderate",
+    "Babesiosis": "Moderate",
+    "Lassa Fever": "High",
+    "Filariasis": "Low",
+    "Onchocerciasis (River Blindness)": "Low",
+    "Toxocariasis": "Low",
+    "Trachoma": "Low",
+    "Whipple's Disease": "Moderate"
+
 }
 def detect_diseases(user_symptoms):
     disease_matches = {}
@@ -248,6 +336,15 @@ def main():
     ---
     **Disclaimer:** This is not a substitute for professional medical advice. 
     Always consult with a qualified healthcare provider for proper diagnosis and treatment.
+    """)
+    
+    #Risk assessment criteria 
+    st.markdown("""
+    ---
+    Criteria for Risk Assessment:\n
+    High: Diseases with a high fatality rate, rapid progression, or potential for outbreaks.\n
+    Moderate: Diseases with significant health impacts but lower fatality rates or slower progression.\n
+    Low: Diseases that are usually manageable or cause mild symptoms.\n
     """)
 
 if __name__ == "__main__":
