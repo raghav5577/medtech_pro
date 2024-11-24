@@ -311,8 +311,6 @@ def main():
 
     st.title("MedTech - Disease Prediction System")
     st.write("Enter your symptoms to get a possible diagnosis")
-    st.title("MedTech - Disease Prediction System")
-    st.write("Enter your symptoms to get a possible diagnosis")
 
     # Create a list of all unique symptoms
     all_symptoms = set()
