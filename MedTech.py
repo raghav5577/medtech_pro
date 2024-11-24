@@ -116,8 +116,6 @@ disease_symptoms = {
     "Whipple's Disease": "Joint Pain, Chronic Diarrhea, Abdominal Pain, Weight Loss",
 }
     
-
-
 disease_specialist = {
     "Infectious Disease Specialist": [ "Anthrax", "Chikungunya", "Dengue", "Ebola", "Hantavirus", "HIV/AIDS", "Leprosy",
     "Leptospirosis", "Lyme Disease", "Marburg Virus", "Norovirus", "Polio", "Scrub Typhus",
@@ -154,7 +152,6 @@ disease_specialist = {
     "Critical Care Specialist": ["Sepsis"],
     "Hepatologist": ["Hepatitis A", "Hepatitis B", "Hepatitis C"],
     "Pediatrician":["Rotavirus"]
-    
 }
 
 risklevels_disease = {
@@ -270,8 +267,8 @@ risklevels_disease = {
     "Toxocariasis": "Low",
     "Trachoma": "Low",
     "Whipple's Disease": "Moderate"
-
 }
+
 def add_custom_header():
     st.markdown(f"""
         <style>
@@ -354,10 +351,10 @@ def add_custom_header():
         </div>
     """, unsafe_allow_html=True)
 
-def get_base64_encoded_image(file_path):
-    with open(file_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode("utf-8")
-        
+def get_image_base64(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode()
+
 def detect_diseases(user_symptoms):
     disease_matches = {}
     
@@ -368,8 +365,9 @@ def detect_diseases(user_symptoms):
     
     max_matches = max(disease_matches.values(), default=0)
     likely_diseases = [disease for disease, matches in disease_matches.items() if matches == max_matches and matches > 0]
-    return likely_diseases, disease_matches
     
+    return likely_diseases, disease_matches
+
 def show_about_us():
     st.markdown("""
         <div class="section" id="about">
