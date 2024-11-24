@@ -272,6 +272,88 @@ risklevels_disease = {
     "Whipple's Disease": "Moderate"
 
 }
+def add_custom_header():
+    st.markdown(f"""
+        <style>
+        /* Position the background image */
+        .stApp {{
+            background-image: url("data:image/jpeg;base64,{get_image_base64('backgroundimage.jpg')}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }}
+
+        /* header styling */
+        .header-container {{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(150, 195, 210, 0.9);  
+            padding: 15px 20px;
+            border-bottom: 2px solid #ddd;
+            width: 100%;
+            box-sizing: border-box;
+        }}
+
+        /* Logo */
+        .logo {{
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 24px;
+            color: #fff;  /* White text color for logo */
+        }}
+
+        .logo img {{
+            height: 35px;
+            margin-right: 10px;
+        }}
+
+        /* Navigation links styling */
+        .nav-links {{
+            display: flex;
+            gap: 20px;
+        }}
+
+        .nav-links a {{
+            color: #000;  /* Black text for nav links */
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }}
+
+        .nav-links a:hover {{
+            color: #007acc;
+            text-decoration: underline;
+        }}
+
+        /* Section */
+        .section {{
+            padding: 50px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }}
+
+        /* About us and Contact  */
+        #about, #contact {{
+            background-color:  rgba(150, 195, 210, 0.9); 
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }}
+        </style>
+
+        <div class="header-container">
+            <div class="logo">
+                <img src="data:image/png;base64,{get_image_base64('finalwhite.png')}" alt="Logo">
+                <span></span>
+            </div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="#contact">Contact</a>
+                <a href="#about">About Us</a>
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
+
 def get_base64_encoded_image(file_path):
     with open(file_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode("utf-8")
@@ -286,29 +368,32 @@ def detect_diseases(user_symptoms):
     
     max_matches = max(disease_matches.values(), default=0)
     likely_diseases = [disease for disease, matches in disease_matches.items() if matches == max_matches and matches > 0]
-    
     return likely_diseases, disease_matches
+def show_about_us():
+    st.markdown("""
+        <div class="section" id="about">
+            <h2>About Us</h2>
+            <p>MedTech is an online fitness tool that helps individuals understand possible causes of their symptoms. 
+            By entering symptoms into the website, users receive information about potential health conditions, 
+            risk levels, and relevant disease specialists. MedTech aims to empower users to manage their health 
+            with accessible, easy-to-understand information, enabling them to make more informed decisions 
+            about consulting healthcare providers.</p>
+    """, unsafe_allow_html=True)
+
+def show_contact():
+    st.markdown("""
+        <div class="section" id="contact">
+            <h2>Contact Us</h2>
+            <p>If you need any support, please don't hesitate to reach out:</p>
+            <ul>
+                <li>Email: electric.capybara.llmr@instantletter.net</li>
+            </ul>
+        </div>
+    """, unsafe_allow_html=True)
 
 def main():
-    image_file = "backgroundimage.jpg"  # Replace with your image file name
-    try:
-        base64_image = get_base64_encoded_image(image_file)
-        st.markdown(
-            f"""
-            <style>
-            .stApp {{
-                background-image: url("data:image/jpg;base64,{base64_image}");
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: center;
-            }}
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-    except FileNotFoundError:
-        st.warning(f"Background image '{image_file}' not found. Using default background.")
-
+    add_custom_header()
+    
     st.title("MedTech - Disease Prediction System")
     st.write("Enter your symptoms to get a possible diagnosis")
 
@@ -354,6 +439,8 @@ def main():
 
             else:
                 st.warning("No disease matches your symptoms. Please consult a general physician.")
+    show_about_us()
+    show_contact()
 
     # Add disclaimer
     st.markdown("""
