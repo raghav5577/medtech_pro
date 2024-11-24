@@ -73,7 +73,7 @@ disease_symptoms = {
     "Irritable Bowel Syndrome (IBS)": "Abdominal Pain, Bloating, Constipation, Diarrhea",
     "Kidney Stones": "Pain In The Lower Back Or Side, Nausea, Vomiting, Blood In The Urine",
     "Lung Cancer": "Cough That Does Not Go Away, Shortness Of Breath, Chest Pain, Unexplained Weight Loss, Fatigue, Blood In The Sputum",
-    "Covid-19": "Fever,Cough,Shortness of breath, difficulty breathing, Fatigue ,Muscle or body aches,Headache, loss of taste,loss of smell,Sore throat, runny nose,Nausea,Diarrhea"
+    "Covid-19": "Fever,Cough,Shortness of breath, difficulty breathing, Fatigue ,Muscle or body aches,Headache, loss of taste,loss of smell,Sore throat, runny nose,Nausea,Diarrhea",
     "Anthrax": "Fever, Chills, Shortness Of Breath, Skin Ulcers, Chest Pain",
     "Chikungunya": "Fever, Joint Pain, Rash, Headache, Fatigue",
     "Dengue": "Fever, Severe Headache, Pain Behind The Eyes, Joint Pain, Muscle Pain, Rash",
@@ -229,7 +229,7 @@ risklevels_disease = {
     "Irritable Bowel Syndrome (IBS)": "Moderate",
     "Kidney Stones": "Moderate",
     "Lung Cancer": "High",
-    "Covid-19": "High"
+    "Covid-19": "High",
     "Anthrax": "High",
     "Chikungunya": "Moderate",
     "Dengue": "High",
