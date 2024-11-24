@@ -1,4 +1,5 @@
 import streamlit as st
+import base64
 
 disease_symptoms = {
     "Malaria": "Fever, Headache, Sweating, Diarrhea, Vomiting, Fatigue",
@@ -271,6 +272,10 @@ risklevels_disease = {
     "Whipple's Disease": "Moderate"
 
 }
+def get_base64_encoded_image(file_path):
+    with open(file_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode("utf-8")
+        
 def detect_diseases(user_symptoms):
     disease_matches = {}
     
@@ -285,6 +290,27 @@ def detect_diseases(user_symptoms):
     return likely_diseases, disease_matches
 
 def main():
+    image_file = "backgroundimage.jpg"  # Replace with your image file name
+    try:
+        base64_image = get_base64_encoded_image(image_file)
+        st.markdown(
+            f"""
+            <style>
+            .stApp {{
+                background-image: url("data:image/jpg;base64,{base64_image}");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+            }}
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+    except FileNotFoundError:
+        st.warning(f"Background image '{image_file}' not found. Using default background.")
+
+    st.title("MedTech - Disease Prediction System")
+    st.write("Enter your symptoms to get a possible diagnosis")
     st.title("MedTech - Disease Prediction System")
     st.write("Enter your symptoms to get a possible diagnosis")
 
