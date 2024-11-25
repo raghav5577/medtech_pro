@@ -385,7 +385,7 @@ def show_contact():
             <h2>Contact Us</h2>
             <p>If you need any support, please don't hesitate to reach out:</p>
             <ul>
-                <li>Email: electric.capybara.llmr@instantletter.net</li>
+                <li>Email: medtechpro@streamlit.app</li>
             </ul>
         </div>
     """, unsafe_allow_html=True)
